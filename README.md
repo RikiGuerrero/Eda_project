@@ -34,7 +34,7 @@
 | `amenities` como string JSON | Parseo a lista Python en `clean_amenities()` |
 | `host_is_superhost` como texto (`t`/`f`) | Conversión a `bool` en `clean_boolean_columns()` |
 | Columnas categóricas con espacios/inconsistencias | Normalización con `.str.strip()` + cast a `category` |
-| Nulos en `bedrooms`, `beds`, `review_scores_rating` | Imputación por mediana agrupada (room_type × barrio) |
+| Nulos en `bedrooms`, `beds` | Imputación por mediana agrupada (room_type × barrio) |
 | Filas duplicadas | Eliminación con `drop_duplicates()` |
 | 75 columnas originales (alta dimensionalidad) | Selección temprana a 13 variables con `BASE_KEEP_COLS` |
 
