@@ -83,7 +83,7 @@ def plot_correlation_ranking(corr_with_price: pd.Series, save_path: Path = None)
 def plot_price_by_room_type(df: pd.DataFrame, rt_stats: pd.DataFrame,
 							save_path: Path = None) -> None:
 	"""
-	Boxplot de precio por room_type con anotaciones de mediana y count.
+	Boxplot de precio por room_type con anotaciones de media y count.
 	"""
 	order_rt = rt_stats.index.tolist()
 	palette_rt = {
@@ -121,7 +121,7 @@ def plot_price_by_neighbourhood(df: pd.DataFrame, barrio_stats: pd.DataFrame,
 								global_median: float, top_n: int = 15,
 								save_path: Path = None) -> None:
 	"""
-	Barras horizontales de precio mediano por barrio (Top N).
+	Barras horizontales de precio medio por barrio (Top N).
 	"""
 	barrio_order = barrio_stats.sort_values('median', ascending=True)
 	colors_barrio = plt.cm.YlOrRd(np.linspace(0.25, 0.85, len(barrio_order)))
@@ -139,11 +139,11 @@ def plot_price_by_neighbourhood(df: pd.DataFrame, barrio_stats: pd.DataFrame,
 
 	ax.axvline(global_median, color='red', linestyle='--', linewidth=1.5, alpha=0.7)
 	ax.text(global_median + 2, ax.get_ylim()[1] * 0.98,
-			f'Mediana global: €{global_median:.0f}',
+			f'Media global: €{global_median:.0f}',
 			fontsize=9, color='red', fontweight='bold', va='top')
 
-	ax.set_xlabel('Precio mediano (€/noche)', fontsize=11)
-	ax.set_title(f'Precio mediano por Barrio (Top {top_n} por volumen)',
+	ax.set_xlabel('Precio medio (€/noche)', fontsize=11)
+	ax.set_title(f'Precio medio por Barrio (Top {top_n} por volumen)',
 				 fontsize=14, fontweight='bold', pad=15)
 	sns.despine(left=True, bottom=True)
 	fig.tight_layout()
@@ -158,12 +158,12 @@ def plot_price_by_neighbourhood(df: pd.DataFrame, barrio_stats: pd.DataFrame,
 def plot_heatmap_neighbourhood_room_type(pivot_median: pd.DataFrame,
 										  save_path: Path = None) -> None:
 	"""
-	Heatmap cruzado barrio × room_type (precio mediano).
+	Heatmap cruzado barrio × room_type (precio medio).
 	"""
 	fig, ax = plt.subplots(figsize=(12, 9))
 	sns.heatmap(pivot_median, annot=True, fmt='.0f', cmap='YlOrRd',
-				linewidths=0.5, cbar_kws={'label': 'Precio mediano (€)'}, ax=ax)
-	ax.set_title('Precio mediano (€) — Barrio × Tipo de Alojamiento',
+				linewidths=0.5, cbar_kws={'label': 'Precio medio (€)'}, ax=ax)
+	ax.set_title('Precio medio (€) — Barrio × Tipo de Alojamiento',
 				 fontsize=14, fontweight='bold', pad=15)
 	ax.set_xlabel('')
 	ax.set_ylabel('')
